@@ -78,7 +78,7 @@ FORM logs_create.
         importance    = importance ).
 
 *   exit when end number is reached
-    ADD 1 TO l_msgno.
+    l_msgno = l_msgno + 1.
     IF l_msgno >= 332.
       EXIT.
     ENDIF.
