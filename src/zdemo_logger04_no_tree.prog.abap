@@ -18,17 +18,16 @@ END-OF-SELECTION.
 
 FORM logs_create.
 
-  DATA :
+  DATA:
     ls_context TYPE bal_s_ex01,
     importance TYPE balprobcl,
-    l_s_msg    TYPE bal_s_msg,
+    ls_msg     TYPE bal_s_msg,
     l_msgno    TYPE symsgno,
     lv_msg     TYPE string.
 
-  logger = zcl_logger_factory=>create_log(
-                                           object = 'ABAPUNIT'
+  logger = zcl_logger_factory=>create_log( object    = 'ABAPUNIT'
                                            subobject = 'LOGGER'
-                                           desc = 'Application Log Demo'
+                                           desc      = 'Application Log Demo'
                                            settings  = zcl_logger_factory=>create_settings(
 *                                              )->set_expiry_date( lv_expire
                                               )->set_autosave( abap_false
@@ -41,16 +40,16 @@ FORM logs_create.
 
   l_msgno = '301'.
   DO.
-    l_s_msg-msgid = 'BL'.
-    l_s_msg-msgno = l_msgno.
+    ls_msg-msgid = 'BL'.
+    ls_msg-msgno = l_msgno.
 
-   "derive message type
+    "derive message type
     IF l_msgno CP '*4'.
-      l_s_msg-msgty = 'E'.
+      ls_msg-msgty = 'E'.
     ELSEIF l_msgno CP '*2*'.
-      l_s_msg-msgty = 'W'.
+      ls_msg-msgty = 'W'.
     ELSE.
-      l_s_msg-msgty = 'S'.
+      ls_msg-msgty = 'S'.
     ENDIF.
 
     "derive message type
@@ -62,7 +61,7 @@ FORM logs_create.
       importance = '3'.
     ENDIF.
 
-    MESSAGE ID l_s_msg-msgid TYPE l_s_msg-msgty NUMBER l_s_msg-msgno
+    MESSAGE ID ls_msg-msgid TYPE ls_msg-msgty NUMBER ls_msg-msgno
              INTO lv_msg.
 
 
@@ -75,8 +74,8 @@ FORM logs_create.
     "customer
     ls_context-id = l_msgno + 1000.
 
-    logger->add( context       = ls_context
-                 importance    = importance ).
+    logger->add( context    = ls_context
+                 importance = importance ).
 
     " exit when end number is reached
     l_msgno = l_msgno + 1.
