@@ -31,7 +31,7 @@ FORM logs_create.
 *                                    )->set_expiry_date( lv_expire
                                      )->set_autosave( abap_false
                                      )->set_must_be_kept_until_expiry( abap_true
-                                     )->set_display_profile( EXPORTING
+                                     )->set_display_profile(
 *                                     i_display_profile = g_s_display_profile
                                      i_profile_name = zcl_logger_settings=>display_profile_names-single ) ).
 *                                     i_context = ls_context
