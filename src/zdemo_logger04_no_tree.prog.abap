@@ -4,7 +4,7 @@
 *&
 *&---------------------------------------------------------------------*
 REPORT zdemo_logger04_no_tree MESSAGE-ID bl.
-DATA :
+DATA:
   logger          TYPE REF TO zif_logger.
 
 START-OF-SELECTION.
