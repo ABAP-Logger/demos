@@ -34,7 +34,7 @@ FORM logs_create.
 *                 i_context = ls_context
                ) ).
 
-    l__msg    TYPE bal_s_msg,
+  l_s_msg    TYPE bal_s_msg,
     importance TYPE balprobcl,
     l_s_msg    TYPE bal_s_msg,
     l_msgno    TYPE symsgno,
