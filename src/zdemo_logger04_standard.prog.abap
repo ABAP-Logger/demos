@@ -64,7 +64,7 @@ FORM logs_create.
     MESSAGE ID ls_msg-msgid TYPE ls_msg-msgty NUMBER ls_msg-msgno
              INTO lv_msg.
 
-    IF p_contex EQ 'X'.
+    IF p_contex = 'X'.
       "Airline
       ls_context-carrid = 'SF'.
       "Connection number
