@@ -4,95 +4,85 @@
 *&
 *&---------------------------------------------------------------------*
 REPORT zdemo_logger04_standard MESSAGE-ID bl.
-DATA :
-  logger          TYPE REF TO zif_logger.
 
-PARAMETERS:
-  pcontext AS CHECKBOX DEFAULT space.
+DATA logger TYPE REF TO zif_logger.
+
+PARAMETERS pcontext AS CHECKBOX DEFAULT space.
 
 START-OF-SELECTION.
 
   PERFORM logs_create.
 
 END-OF-SELECTION.
-  IF logger->is_empty( ) EQ abap_false.
+
+  IF logger->is_empty( ) = abap_false.
     logger->fullscreen( ).
   ENDIF.
 
 FORM logs_create.
+
   DATA:
-    ls_context           TYPE bal_s_ex01.
+    ls_context    TYPE bal_s_ex01,
+    ls_importance TYPE balprobcl,
+    ls_msg        TYPE bal_s_msg,
+    lv_msgno      TYPE symsgno,
+    lv_msg        TYPE string.
 
-  logger = zcl_logger_factory=>create_log(
-            object = ''
-            subobject = ''
-            desc = 'Application Log Demo'
-            settings  = zcl_logger_factory=>create_settings(
-               ")->set_expiry_date( lv_expire
-               )->set_autosave( abap_false
-               )->set_must_be_kept_until_expiry( abap_true
-               ")->set_display_profile( "EXPORTING
-                   "i_display_profile = g_s_display_profile
-                   "i_profile_name = zcl_logger_settings=>display_profile_names-self_defined
-                   "i_context = ls_context
-               ) ).
+  logger =
+    zcl_logger_factory=>create_log( object    = 'ABAPUNIT'
+                                    subobject = 'LOGGER'
+                                    desc      = 'Application Log Demo'
+                                    settings  = zcl_logger_factory=>create_settings(
+                                       ")->set_expiry_date( lv_expire
+                                       )->set_autosave( abap_false
+                                       )->set_must_be_kept_until_expiry( abap_true ) ).
 
-  DATA :
-    importance TYPE balprobcl,
-    l_s_msg    TYPE bal_s_msg,
-    l_msgno    TYPE symsgno,
-    lv_msg     TYPE string.
+  lv_msgno = '301'.
 
-  l_msgno = 301.
   DO.
-    l_s_msg-msgid = 'BL'.
-    l_s_msg-msgno = l_msgno.
+    ls_msg-msgid = 'BL'.
+    ls_msg-msgno = lv_msgno.
 
-*   derive message type
-    IF l_msgno CP '*4'.
-      l_s_msg-msgty = 'E'.
-    ELSEIF l_msgno CP '*2*'.
-      l_s_msg-msgty = 'W'.
+    "derive message type
+    IF lv_msgno CP '*4'.
+      ls_msg-msgty = 'E'.
+    ELSEIF lv_msgno CP '*2*'.
+      ls_msg-msgty = 'W'.
     ELSE.
-      l_s_msg-msgty = 'S'.
+      ls_msg-msgty = 'S'.
     ENDIF.
 
-*   derive message type
-    IF l_msgno CP '*2'.
-      importance = '1'.
-    ELSEIF l_msgno CP '*5*'.
-      importance = '2'.
+    "derive message type
+    IF lv_msgno CP '*2'.
+      ls_importance = '1'.
+    ELSEIF lv_msgno CP '*5*'.
+      ls_importance = '2'.
     ELSE.
-      importance = '3'.
+      ls_importance = '3'.
     ENDIF.
 
-    MESSAGE ID l_s_msg-msgid TYPE l_s_msg-msgty NUMBER l_s_msg-msgno
+    MESSAGE ID ls_msg-msgid TYPE ls_msg-msgty NUMBER ls_msg-msgno
              INTO lv_msg.
 
     IF pcontext EQ 'X'.
-      ls_context-carrid = 'SF'. "Airline
-      ls_context-connid = 3. "Connection number
-      ls_context-fldate = sy-datum + l_msgno. "Flight Date
-      ls_context-id = l_msgno + 1000 ."customer
+      "Airline
+      ls_context-carrid = 'SF'.
+      "Connection number
+      ls_context-connid = 3.
+      "Flight Date
+      ls_context-fldate = sy-datum + lv_msgno.
+      "customer
+      ls_context-id     = lv_msgno + 1000.
 
+      logger->add( context    = ls_context
+                   importance = ls_importance ).
+    ELSE.
+      logger->add( importance = ls_importance ).
     ENDIF.
 
-    logger->add(
-  EXPORTING
-*    obj_to_log    =
-    context       = ls_context
-*    callback_form =
-*    callback_prog =
-*    callback_fm   =
-*    type          =
-        importance    = importance
-*  RECEIVING
-*    self          =
-    ).
-
-*   exit when end number is reached
-    ADD 1 TO l_msgno.
-    IF l_msgno >= 332.
+    "exit when end number is reached
+    lv_msgno = lv_msgno + 1.
+    IF lv_msgno >= 332.
       EXIT.
     ENDIF.
 
