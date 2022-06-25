@@ -19,11 +19,11 @@ END-OF-SELECTION.
 FORM logs_create.
 
   DATA:
-    ls_context TYPE bal_s_ex01,
-    importance TYPE balprobcl,
-    ls_msg     TYPE bal_s_msg,
-    l_msgno    TYPE symsgno,
-    lv_msg     TYPE string.
+    ls_context    TYPE bal_s_ex01,
+    ls_importance TYPE balprobcl,
+    ls_msg        TYPE bal_s_msg,
+    lv_msgno      TYPE symsgno,
+    lv_msg        TYPE string.
 
   logger = zcl_logger_factory=>create_log( object    = 'ABAPUNIT'
                                            subobject = 'LOGGER'
@@ -38,27 +38,27 @@ FORM logs_create.
 *                                                i_context = ls_context
                                               ) ).
 
-  l_msgno = '301'.
+  lv_msgno = '301'.
   DO.
     ls_msg-msgid = 'BL'.
-    ls_msg-msgno = l_msgno.
+    ls_msg-msgno = lv_msgno.
 
     "derive message type
-    IF l_msgno CP '*4'.
+    IF lv_msgno CP '*4'.
       ls_msg-msgty = 'E'.
-    ELSEIF l_msgno CP '*2*'.
+    ELSEIF lv_msgno CP '*2*'.
       ls_msg-msgty = 'W'.
     ELSE.
       ls_msg-msgty = 'S'.
     ENDIF.
 
     "derive message type
-    IF l_msgno CP '*2'.
-      importance = '1'.
-    ELSEIF l_msgno CP '*5*'.
-      importance = '2'.
+    IF lv_msgno CP '*2'.
+      ls_importance = '1'.
+    ELSEIF lv_msgno CP '*5*'.
+      ls_importance = '2'.
     ELSE.
-      importance = '3'.
+      ls_importance = '3'.
     ENDIF.
 
     MESSAGE ID ls_msg-msgid TYPE ls_msg-msgty NUMBER ls_msg-msgno
@@ -70,16 +70,16 @@ FORM logs_create.
     "Connection number
     ls_context-connid = 3.
     "Flight Date
-    ls_context-fldate = sy-datum + l_msgno.
+    ls_context-fldate = sy-datum + lv_msgno.
     "customer
-    ls_context-id = l_msgno + 1000.
+    ls_context-id = lv_msgno + 1000.
 
     logger->add( context    = ls_context
-                 importance = importance ).
+                 importance = ls_importance ).
 
     " exit when end number is reached
-    l_msgno = l_msgno + 1.
-    IF l_msgno >= 332.
+    lv_msgno = lv_msgno + 1.
+    IF lv_msgno >= 332.
       EXIT.
     ENDIF.
 
