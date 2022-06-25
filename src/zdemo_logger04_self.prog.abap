@@ -63,25 +63,25 @@ FORM logs_create.
   ls_fcat-outputlen  = 8.
   APPEND ls_fcat TO ls_display_profile-lev3_fcat.
 
-  DATA(self_defined) = zcl_logger_settings=>display_profile_names-self_defined.
+  DATA(lv_self_defined) = zcl_logger_settings=>display_profile_names-self_defined.
 
-  DATA(log_settings) =
+  DATA(lo_log_settings) =
     zcl_logger_factory=>create_settings(
 *                                       )->set_expiry_date( lv_expire
                                          )->set_autosave( abap_false
                                          )->set_must_be_kept_until_expiry( abap_true
                                          )->set_display_profile( i_display_profile = ls_display_profile
-                                                                 i_profile_name    = self_defined
+                                                                 i_profile_name    = lv_self_defined ).
 *                                                              i_context = ls_context
-                                         ).
 
   logger =
     zcl_logger_factory=>create_log( object    = 'ABAPUNIT'
                                     subobject = 'LOGGER'
                                     desc      = 'Application Log Demo'
-                                    settings  = log_settings ).
+                                    settings  = lo_log_settings ).
 
   lv_msgno = '301'.
+
   DO.
     ls_msg-msgid = 'BL'.
     ls_msg-msgno = lv_msgno.
@@ -107,8 +107,7 @@ FORM logs_create.
     MESSAGE ID ls_msg-msgid TYPE ls_msg-msgty NUMBER ls_msg-msgno
              INTO lv_msg.
 
-    data(lv_rem) = lv_msgno MOD 2.
-    IF lv_rem  = 0.
+    IF lv_msgno MOD 2 = 0.
       "Airline
       ls_context-carrid = 'SF'.
     ELSE.
