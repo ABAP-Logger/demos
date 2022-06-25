@@ -17,7 +17,7 @@ END-OF-SELECTION.
   ENDIF.
 
 FORM logs_create.
-  DATA :
+  DATA:
     ls_importance TYPE balprobcl,
     ls_msg        TYPE bal_s_msg,
     lv_msgno      TYPE symsgno,
