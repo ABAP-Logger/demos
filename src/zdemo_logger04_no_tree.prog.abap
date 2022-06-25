@@ -4,8 +4,8 @@
 *&
 *&---------------------------------------------------------------------*
 REPORT zdemo_logger04_no_tree MESSAGE-ID bl.
-DATA:
-  logger          TYPE REF TO zif_logger.
+
+DATA logger TYPE REF TO zif_logger.
 
 START-OF-SELECTION.
 
@@ -17,35 +17,34 @@ END-OF-SELECTION.
   ENDIF.
 
 FORM logs_create.
-  DATA:
-    ls_context           TYPE bal_s_ex01.
 
-  logger = zcl_logger_factory=>create_log(
-            object = ''
-            subobject = ''
-            desc = 'Application Log Demo'
-            settings  = zcl_logger_factory=>create_settings(
-*               )->set_expiry_date( lv_expire
-               )->set_autosave( abap_false
-               )->set_must_be_kept_until_expiry( abap_true
-               )->set_display_profile( EXPORTING
-*                 i_display_profile = g_s_display_profile
-                 i_profile_name = zcl_logger_settings=>display_profile_names-no_tree
-*                 i_context = ls_context
-               ) ).
-
-  l_s_msg    TYPE bal_s_msg,
+  DATA :
+    ls_context TYPE bal_s_ex01,
     importance TYPE balprobcl,
     l_s_msg    TYPE bal_s_msg,
     l_msgno    TYPE symsgno,
     lv_msg     TYPE string.
 
-  l_msgno = 301.
+  logger = zcl_logger_factory=>create_log(
+                                           object = 'ABAPUNIT'
+                                           subobject = 'LOGGER'
+                                           desc = 'Application Log Demo'
+                                           settings  = zcl_logger_factory=>create_settings(
+*                                              )->set_expiry_date( lv_expire
+                                              )->set_autosave( abap_false
+                                              )->set_must_be_kept_until_expiry( abap_true
+                                              )->set_display_profile(
+*                                                i_display_profile = g_s_display_profile
+                                                i_profile_name = zcl_logger_settings=>display_profile_names-no_tree
+*                                                i_context = ls_context
+                                              ) ).
+
+  l_msgno = '301'.
   DO.
     l_s_msg-msgid = 'BL'.
     l_s_msg-msgno = l_msgno.
 
-*   derive message type
+   "derive message type
     IF l_msgno CP '*4'.
       l_s_msg-msgty = 'E'.
     ELSEIF l_msgno CP '*2*'.
@@ -54,7 +53,7 @@ FORM logs_create.
       l_s_msg-msgty = 'S'.
     ENDIF.
 
-*   derive message type
+    "derive message type
     IF l_msgno CP '*2'.
       importance = '1'.
     ELSEIF l_msgno CP '*5*'.
@@ -67,17 +66,19 @@ FORM logs_create.
              INTO lv_msg.
 
 
-    ls_context-carrid = 'SF'. "Airline
-    ls_context-connid = 3. "Connection number
-    ls_context-fldate = sy-datum + l_msgno. "Flight Date
-    ls_context-id = l_msgno + 1000 ."customer
+    "Airline
+    ls_context-carrid = 'SF'.
+    "Connection number
+    ls_context-connid = 3.
+    "Flight Date
+    ls_context-fldate = sy-datum + l_msgno.
+    "customer
+    ls_context-id = l_msgno + 1000.
 
-    logger->add(
-      EXPORTING
-        context       = ls_context
-        importance    = importance ).
+    logger->add( context       = ls_context
+                 importance    = importance ).
 
-*   exit when end number is reached
+    " exit when end number is reached
     l_msgno = l_msgno + 1.
     IF l_msgno >= 332.
       EXIT.
