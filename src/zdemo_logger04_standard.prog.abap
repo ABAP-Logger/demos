@@ -7,7 +7,7 @@ REPORT zdemo_logger04_standard MESSAGE-ID bl.
 
 DATA logger TYPE REF TO zif_logger.
 
-PARAMETERS pcontext AS CHECKBOX DEFAULT space.
+PARAMETERS p_contex AS CHECKBOX DEFAULT space.
 
 START-OF-SELECTION.
 
@@ -64,7 +64,7 @@ FORM logs_create.
     MESSAGE ID ls_msg-msgid TYPE ls_msg-msgty NUMBER ls_msg-msgno
              INTO lv_msg.
 
-    IF pcontext EQ 'X'.
+    IF p_contex EQ 'X'.
       "Airline
       ls_context-carrid = 'SF'.
       "Connection number
