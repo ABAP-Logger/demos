@@ -12,7 +12,7 @@ START-OF-SELECTION.
   PERFORM logs_create.
 
 END-OF-SELECTION.
-  IF logger->is_empty( ) EQ abap_false.
+  IF logger->is_empty( ) = abap_false.
     logger->fullscreen( ).
   ENDIF.
 
