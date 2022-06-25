@@ -27,8 +27,7 @@ FORM logs_create.
     ls_importance      TYPE balprobcl,
     ls_msg             TYPE bal_s_msg,
     lv_msgno           TYPE symsgno,
-    lv_msg             TYPE string,
-    lv_rem             TYPE i.
+    lv_msg             TYPE string.
 
   ls_display_profile-title     = 'Application Log:Self defined display profile'.
   ls_display_profile-use_grid = p_grid.
@@ -64,18 +63,23 @@ FORM logs_create.
   ls_fcat-outputlen  = 8.
   APPEND ls_fcat TO ls_display_profile-lev3_fcat.
 
-  logger = zcl_logger_factory=>create_log( object    = 'ABAPUNIT'
-                                           subobject = 'LOGGER'
-                                           desc      = 'Application Log Demo'
-                                           settings  = zcl_logger_factory=>create_settings(
-*                                           )->set_expiry_date( lv_expire
-                                           )->set_autosave( abap_false
-                                               )->set_must_be_kept_until_expiry( abap_true
-                                               )->set_display_profile(
-                                                 i_display_profile = ls_display_profile
-                                                 i_profile_name = zcl_logger_settings=>display_profile_names-self_defined
-                                                 "i_context = ls_context
-                                           ) ).
+  DATA(self_defined) = zcl_logger_settings=>display_profile_names-self_defined.
+
+  DATA(log_settings) =
+    zcl_logger_factory=>create_settings(
+*                                       )->set_expiry_date( lv_expire
+                                         )->set_autosave( abap_false
+                                         )->set_must_be_kept_until_expiry( abap_true
+                                         )->set_display_profile( i_display_profile = ls_display_profile
+                                                                 i_profile_name    = self_defined
+*                                                              i_context = ls_context
+                                         ).
+
+  logger =
+    zcl_logger_factory=>create_log( object    = 'ABAPUNIT'
+                                    subobject = 'LOGGER'
+                                    desc      = 'Application Log Demo'
+                                    settings  = log_settings ).
 
   lv_msgno = '301'.
   DO.
@@ -103,7 +107,7 @@ FORM logs_create.
     MESSAGE ID ls_msg-msgid TYPE ls_msg-msgty NUMBER ls_msg-msgno
              INTO lv_msg.
 
-    lv_rem = ( lv_msgno MOD 2 ).
+    data(lv_rem) = lv_msgno MOD 2.
     IF lv_rem  = 0.
       "Airline
       ls_context-carrid = 'SF'.
@@ -116,7 +120,7 @@ FORM logs_create.
     "Flight Date
     ls_context-fldate = sy-datum + ls_importance.
     "customer
-    ls_context-id = ls_importance + 1000 .
+    ls_context-id = ls_importance + 1000.
 
     logger->add( context    = ls_context
                  importance = ls_importance ).
