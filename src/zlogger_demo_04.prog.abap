@@ -25,7 +25,7 @@ DO 10 TIMES.
       my_logger->s( obj_to_log = 'item check failed' context = VALUE zlogger_demo_03_context_s( docno = '0000012345' itmno = posnr ) ) ##no_text.
 
   ENDCASE.
-  ADD 10 TO posnr.
+  posnr = posnr + 10.
 ENDDO.
 
 "Display messages in popup

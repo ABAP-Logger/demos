@@ -9,7 +9,7 @@ TRY.
     my_profile->set_value( i_fld = 'SHOW_ALL' i_val = abap_true ).
     my_profile->set_value( i_fld = 'NONSENSE' i_val = 'Does not matter' ) ##no_text.
   CATCH zcx_logger_display_profile INTO DATA(error).
-    my_logger->e( error->get_text( ) ).
+    my_logger->E( error->get_text( ) ).
 ENDTRY.
 
 
