@@ -4,16 +4,16 @@
 *&
 *&---------------------------------------------------------------------*
 REPORT zdemo_logger04_no_tree MESSAGE-ID bl.
-
-DATA logger TYPE REF TO zif_logger.
+DATA:
+  logger     TYPE REF TO zif_logger,
+  my_profile TYPE REF TO zif_logger_display_profile.
 
 START-OF-SELECTION.
 
   PERFORM logs_create.
 
-END-OF-SELECTION.
   IF logger->is_empty( ) = abap_false.
-    logger->fullscreen( ).
+    logger->popup( my_profile->get( ) ).
   ENDIF.
 
 FORM logs_create.
@@ -32,11 +32,19 @@ FORM logs_create.
 *                                              )->set_expiry_date( lv_expire
                                               )->set_autosave( abap_false
                                               )->set_must_be_kept_until_expiry( abap_true
-                                              )->set_display_profile(
-*                                                i_display_profile = g_s_display_profile
-                                                i_profile_name = zcl_logger_settings=>display_profile_names-no_tree
-*                                                i_context = ls_context
                                               ) ).
+
+  "create display profile
+  my_profile = zcl_logger_factory=>create_display_profile( i_no_tree = 'X' )->set_grid( abap_true ).
+  TRY.
+      my_profile->set_value( i_fld = 'SHOW_ALL' i_val = abap_true ).
+      my_profile->set_context( 'BAL_S_EX01' ).
+      my_profile->set_value( i_fld = 'EXP_LEVEL' i_val = 0 ).
+
+    CATCH zcx_logger_display_profile INTO DATA(error).
+      logger->e( error->get_text( ) ).
+  ENDTRY.
+
 
   lv_msgno = '301'.
   DO.

@@ -15,12 +15,6 @@
      <ENTRY>Application Log: Demo Program: Standard Log Display (Multiple Logs)</ENTRY>
      <LENGTH>67</LENGTH>
     </item>
-    <item>
-     <ID>S</ID>
-     <KEY>P_GRID</KEY>
-     <ENTRY>Grid</ENTRY>
-     <LENGTH>12</LENGTH>
-    </item>
    </TPOOL>
   </asx:values>
  </asx:abap>
