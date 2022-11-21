@@ -17,24 +17,24 @@ SELECTION-SCREEN END OF BLOCK b01.
 END-OF-SELECTION.
 
 * show a single log file
-  IF NOT p_single IS INITIAL.
+  IF p_single IS NOT INITIAL.
     SUBMIT zdemo_logger04_single
            AND RETURN.
   ENDIF.
 
 * show many log files
-  IF NOT p_stndrd IS INITIAL.
+  IF p_stndrd IS NOT INITIAL.
     SUBMIT zdemo_logger04_standard
            AND RETURN.
   ENDIF.
 
 * show one log file and no tree next to it
-  IF NOT p_notree IS INITIAL.
+  IF p_notree IS NOT INITIAL.
     SUBMIT zdemo_logger04_no_tree
            AND RETURN.
   ENDIF.
 
-  IF NOT p_self IS INITIAL.
+  IF p_self IS NOT INITIAL.
     SUBMIT zdemo_logger04_self
       AND RETURN.
   ENDIF.
