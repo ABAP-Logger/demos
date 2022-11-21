@@ -5,8 +5,8 @@
 *&---------------------------------------------------------------------*
 REPORT zdemo_logger04_no_tree MESSAGE-ID bl.
 DATA:
-  logger     TYPE REF TO zif_logger,
-  my_profile TYPE REF TO zif_logger_display_profile.
+  logger     TYPE REF TO zif_logger, ##no_text.
+  my_profile TYPE REF TO zif_logger_display_profile. ##no_text.
 
 START-OF-SELECTION.
 
