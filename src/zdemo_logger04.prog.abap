@@ -5,7 +5,8 @@
 *&---------------------------------------------------------------------*
 REPORT zdemo_logger04.
 
-SELECTION-SCREEN BEGIN OF BLOCK b01 WITH FRAME." TITLE TEXT-001.
+SELECTION-SCREEN BEGIN OF BLOCK b01 WITH FRAME.
+" TITLE TEXT-001.
 PARAMETERS:
   p_single RADIOBUTTON GROUP sel DEFAULT 'X',
   p_stndrd RADIOBUTTON GROUP sel,
