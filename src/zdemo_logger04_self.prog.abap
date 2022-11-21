@@ -70,15 +70,15 @@ FORM logs_create.
 
 
     rem = ( l_msgno MOD 2 ).
-    IF   rem  = 0.
-      ls_context-carrid = 'SF'. "Airline
+    IF rem  = 0.
+      ls_context-carrid = 'SF'.
     ELSE.
       ls_context-carrid = 'AI'.
     ENDIF.
-
-    ls_context-connid = importance. "Connection number
-    ls_context-fldate = sy-datum + importance. "Flight Date
-    ls_context-id = importance + 1000 ."customer
+    
+    ls_context-connid = importance. 
+    ls_context-fldate = sy-datum + importance.     
+    ls_context-id = importance + 1000 .
 
     logger->add(
       context       = ls_context
@@ -105,15 +105,23 @@ FORM display_profile_self.
   my_profile = zcl_logger_factory=>create_display_profile( i_no_tree = 'X' )->set_grid( p_grid ).
   TRY.
       my_profile->set_context( 'BAL_S_EX01' ).
-      my_profile->set_value( i_fld = 'TITLE' i_val = 'Application Log:Self defined display profile' ).
-      my_profile->set_value( i_fld = 'HEAD_TEXT' i_val = 'Application.Log.Demo' ).
-      my_profile->set_value( i_fld = 'TREE_SIZE' i_val = 28 ).
-      my_profile->set_value( i_fld = 'HEAD_SIZE' i_val = 47 ).
+      my_profile->set_value( i_fld = 'TITLE' 
+                             i_val = 'Application Log:Self defined display profile' ).
+      my_profile->set_value( i_fld = 'HEAD_TEXT' 
+                             i_val = 'Application.Log.Demo' ).
+      my_profile->set_value( i_fld = 'TREE_SIZE' 
+                                      i_val = 28 ).
+      my_profile->set_value( i_fld = 'HEAD_SIZE'
+                             i_val = 47 ).
 
-      my_profile->set_value( i_fld = 'EXP_LEVEL' i_val = 1 ).
-      my_profile->set_value( i_fld = 'CWIDTH_OPT' i_val = 'X' ).
-      my_profile->set_value( i_fld = 'MESS_MARK' i_val = 'X' ).
-      my_profile->set_value( i_fld = 'SHOW_ALL' i_val = 'X' ).
+      my_profile->set_value( i_fld = 'EXP_LEVEL' 
+                             i_val = 1 ).
+      my_profile->set_value( i_fld = 'CWIDTH_OPT' 
+                             i_val = 'X' ).
+      my_profile->set_value( i_fld = 'MESS_MARK' 
+                             i_val = 'X' ).
+      my_profile->set_value( i_fld = 'SHOW_ALL' 
+                             i_val = 'X' ).
 
 
       "Level 1 level1 fields
