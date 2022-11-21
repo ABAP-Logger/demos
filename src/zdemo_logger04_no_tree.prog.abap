@@ -37,13 +37,14 @@ FORM logs_create.
   "create display profile
   my_profile = zcl_logger_factory=>create_display_profile( i_no_tree = 'X' )->set_grid( abap_true ).
   TRY.
-      my_profile->set_value( i_fld = 'SHOW_ALL' i_val = abap_true ).
+      my_profile->set_value( i_fld = 'SHOW_ALL' 
+                             i_val = abap_true ).
       my_profile->set_context( 'BAL_S_EX01' ).
-      my_profile->set_value( i_fld = 'EXP_LEVEL' 
+      my_profile->set_value( i_fld = 'EXP_LEVEL'
                              i_val = 0 ).
 
-    CATCH zcx_logger_display_profile INTO DATA(error).
-      logger->e( error->get_text( ) ).
+    CATCH zcx_logger_display_profile INTO DATA(lv_error).
+      logger->e( lv_error->get_text( ) ).
   ENDTRY.
 
 
