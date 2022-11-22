@@ -20,7 +20,7 @@ START-OF-SELECTION.
   ENDIF.
 
 FORM logs_create
-  USING desc.
+   USING desc.
   DATA:
     ls_context    TYPE bal_s_ex01,
     lv_importance TYPE balprobcl,
@@ -28,13 +28,12 @@ FORM logs_create
     lv_msgno      TYPE symsgno,
     lv_msg        TYPE string.
 
-  logger = zcl_logger_factory=>create_log(
-            object = 'ABAPUNIT'
-            subobject = 'LOGGER'
-            desc = desc "
-            settings  = zcl_logger_factory=>create_settings(
-               )->set_autosave( abap_false
-               )->set_must_be_kept_until_expiry( abap_true ) ).
+  logger =
+    zcl_logger_factory=>create_log( object = 'ABAPUNIT'
+                                    subobject = 'LOGGER'
+                                    desc = desc
+                                    settings  =  zcl_logger_factory=>create_settings( )->set_autosave( abap_false
+                                                                                      )->set_must_be_kept_until_expiry( abap_true ) ).
 
 
   "create display profile
@@ -86,7 +85,7 @@ FORM logs_create
     "customer
     ls_context-id = lv_msgno + 1000 .
 
-    logger->add( context = ls_context
+    logger->add( context    = ls_context
                  importance = lv_importance ).
 
     " exit when end number is reached
