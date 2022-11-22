@@ -23,15 +23,15 @@ FORM logs_create.
 
   DATA ls_context TYPE bal_s_ex01.
 
-  logger = zcl_logger_factory=>create_log(
-            object = ''
-            subobject = ''
-            desc = 'Application Log Demo'
-            settings  = zcl_logger_factory=>create_settings(
-*               )->set_expiry_date( lv_expire
-               )->set_autosave( abap_false
-               )->set_must_be_kept_until_expiry( abap_true
-               ) ).
+  logger =
+    zcl_logger_factory=>create_log( object = ''
+                                    subobject = ''
+                                    desc = 'Application Log Demo'
+                                    settings  = zcl_logger_factory=>create_settings(
+*                                       )->set_expiry_date( lv_expire
+                                    )->set_autosave( abap_false
+                                    )->set_must_be_kept_until_expiry( abap_true
+                                    ) ).
 
   PERFORM display_profile_self.
 
@@ -75,9 +75,9 @@ FORM logs_create.
     ELSE.
       ls_context-carrid = 'AI'.
     ENDIF.
-    
-    ls_context-connid = importance. 
-    ls_context-fldate = sy-datum + importance.     
+
+    ls_context-connid = importance.
+    ls_context-fldate = sy-datum + importance.
     ls_context-id = importance + 1000 .
 
     logger->add(
@@ -104,23 +104,23 @@ FORM display_profile_self.
   "create display profile
   my_profile = zcl_logger_factory=>create_display_profile( i_no_tree = 'X' )->set_grid( p_grid ).
   TRY.
-      my_profile->set_context( 'BAL_S_EX01' ).
-      my_profile->set_value( i_fld = 'TITLE' 
+      my_profile->set_context_message( 'BAL_S_EX01' ).
+      my_profile->set_value( i_fld = 'TITLE'
                              i_val = 'Application Log:Self defined display profile' ).
-      my_profile->set_value( i_fld = 'HEAD_TEXT' 
+      my_profile->set_value( i_fld = 'HEAD_TEXT'
                              i_val = 'Application.Log.Demo' ).
-      my_profile->set_value( i_fld = 'TREE_SIZE' 
+      my_profile->set_value( i_fld = 'TREE_SIZE'
                                       i_val = 28 ).
       my_profile->set_value( i_fld = 'HEAD_SIZE'
                              i_val = 47 ).
 
-      my_profile->set_value( i_fld = 'EXP_LEVEL' 
+      my_profile->set_value( i_fld = 'EXP_LEVEL'
                              i_val = 1 ).
-      my_profile->set_value( i_fld = 'CWIDTH_OPT' 
+      my_profile->set_value( i_fld = 'CWIDTH_OPT'
                              i_val = 'X' ).
-      my_profile->set_value( i_fld = 'MESS_MARK' 
+      my_profile->set_value( i_fld = 'MESS_MARK'
                              i_val = 'X' ).
-      my_profile->set_value( i_fld = 'SHOW_ALL' 
+      my_profile->set_value( i_fld = 'SHOW_ALL'
                              i_val = 'X' ).
 
 
@@ -149,9 +149,12 @@ FORM display_profile_self.
       ls_fcat-outputlen  = 8.
       APPEND ls_fcat TO lev3_fcat.
 
-      my_profile->set_value( i_fld = 'LEV1_FCAT' i_val = lev1_fcat ).
-      my_profile->set_value( i_fld = 'LEV2_FCAT' i_val = lev2_fcat ).
-      my_profile->set_value( i_fld = 'LEV3_FCAT' i_val = lev3_fcat ).
+      my_profile->set_value( i_fld = 'LEV1_FCAT'
+                             i_val = lev1_fcat ).
+      my_profile->set_value( i_fld = 'LEV2_FCAT'
+                             i_val = lev2_fcat ).
+      my_profile->set_value( i_fld = 'LEV3_FCAT'
+                             i_val = lev3_fcat ).
     CATCH zcx_logger_display_profile INTO DATA(error).
       logger->e( error->get_text( ) ).
   ENDTRY.

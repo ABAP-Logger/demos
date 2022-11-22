@@ -44,7 +44,7 @@ i_standard  = 'X'
 ).
 
   my_profile->set_grid( abap_true ).
-  my_profile->set_context( 'BAL_S_EX01' ).
+  my_profile->set_context_message( 'BAL_S_EX01' ).
   my_profile->set_value( i_fld = 'EXP_LEVEL' i_val = 0 ).
   my_profile->set_value( i_fld = 'CWIDTH_OPT' i_val = 'X' ).
   my_profile->set_value( i_fld = 'MESS_MARK' i_val = 'X' ).

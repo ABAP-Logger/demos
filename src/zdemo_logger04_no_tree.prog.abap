@@ -39,7 +39,7 @@ FORM logs_create.
   TRY.
       my_profile->set_value( i_fld = 'SHOW_ALL'
                              i_val = abap_true ).
-      my_profile->set_context( 'BAL_S_EX01' ).
+      my_profile->set_context_message( 'BAL_S_EX01' ).
       my_profile->set_value( i_fld = 'EXP_LEVEL'
                              i_val = 0 ).
 
