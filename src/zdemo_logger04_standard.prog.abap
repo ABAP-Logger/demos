@@ -83,7 +83,7 @@ FORM logs_create
     "Flight Date
     ls_context-fldate = sy-datum + lv_msgno.
     "customer
-    ls_context-id = lv_msgno + 1000 .
+    ls_context-id = lv_msgno + 1000.
 
     logger->add( context    = ls_context
                  importance = lv_importance ).
