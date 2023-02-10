@@ -32,7 +32,7 @@ FORM logs_create
     zcl_logger_factory=>create_log( object = 'ABAPUNIT'
                                     subobject = 'LOGGER'
                                     desc = desc
-                                    settings  =  zcl_logger_factory=>create_settings( )->set_autosave( abap_false
+                                    settings  = zcl_logger_factory=>create_settings( )->set_autosave( abap_false
                                                                                       )->set_must_be_kept_until_expiry( abap_true ) ).
 
 
