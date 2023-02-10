@@ -20,7 +20,7 @@ START-OF-SELECTION.
   ENDIF.
 
 FORM logs_create
-   USING desc.
+    USING desc.
   DATA:
     ls_context    TYPE bal_s_ex01,
     lv_importance TYPE balprobcl,
