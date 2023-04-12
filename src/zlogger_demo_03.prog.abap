@@ -17,7 +17,7 @@ ENDTRY.
 my_logger->i( 'program start' ) ##no_text.
 my_logger->w( 'This is a warning' ) ##no_text.
 my_logger->s( 'Everything ok at the end' ) ##no_text.
-my_logger->s( 'Lo saved. See transaction SLG1' ) ##no_text.
+my_logger->s( 'Log saved. See transaction SLG1' ) ##no_text.
 
 "Display messages in popup
 my_logger->popup( my_profile->get( ) ).

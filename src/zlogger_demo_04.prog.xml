@@ -15,6 +15,24 @@
      <ENTRY>ABAP Logger: Demo report 04 - usage of context fields</ENTRY>
      <LENGTH>53</LENGTH>
     </item>
+    <item>
+     <ID>S</ID>
+     <KEY>P_CXLEV2</KEY>
+     <ENTRY>Display context under log info</ENTRY>
+     <LENGTH>38</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>P_CXTREE</KEY>
+     <ENTRY>Display context directly</ENTRY>
+     <LENGTH>32</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>P_NOTREE</KEY>
+     <ENTRY>Display default (log info)</ENTRY>
+     <LENGTH>34</LENGTH>
+    </item>
    </TPOOL>
   </asx:values>
  </asx:abap>

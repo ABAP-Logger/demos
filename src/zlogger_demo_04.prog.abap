@@ -1,10 +1,23 @@
 REPORT zlogger_demo_04.
 
+PARAMETERS p_notree RADIOBUTTON GROUP dis DEFAULT 'X'.
+PARAMETERS p_cxtree RADIOBUTTON GROUP dis.
+PARAMETERS p_cxlev2 RADIOBUTTON GROUP dis.
 
 "create display profile
 DATA(my_profile) = zcl_logger_factory=>create_display_profile(
                i_single_log  = abap_true )->set_grid( abap_true ).
-my_profile->set_context( 'ZLOGGER_DEMO_03_CONTEXT_S' ).
+my_profile->set_context_message( 'ZLOGGER_DEMO_03_CONTEXT_S' ).
+CASE 'X'.
+  WHEN p_notree.
+  WHEN p_cxtree.
+    my_profile->set_context_tree( 'ZLOGGER_DEMO_03_CONTEXT_S' ).
+  WHEN p_cxlev2.
+    my_profile->set_context_tree(
+      i_context_structure = 'ZLOGGER_DEMO_03_CONTEXT_S'
+      i_under_log         = abap_true ).
+ENDCASE.
+
 my_profile->set_value(
     i_fld = 'EXP_LEVEL'
     i_val = 0 ).
