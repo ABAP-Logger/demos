@@ -23,7 +23,7 @@ CLASS ZCL_LOGGER_APACK_MANIFEST IMPLEMENTATION.
 
     dep-group_id    = 'github.com/ABAP-logger'.
     dep-artifact_id = 'ABAP-Logger'.
-    dep-git_url     = 'https://github.com/ABAP-logger'.
+    dep-git_url     = 'https://github.com/ABAP-Logger/ABAP-Logger'.
 
     if_apack_manifest~descriptor-group_id        = 'github.com/ABAP-logger'.
     if_apack_manifest~descriptor-artifact_id     = 'ABAP-Logger-demos'.
