@@ -1,6 +1,7 @@
 {
   "global": {
     "files": "/src/**/*.*",
+    "exclude": ["zlogger_demo_06"],
     "skipGeneratedGatewayClasses": true,
     "skipGeneratedFunctionGroups": true,
     "skipGeneratedPersistentClasses": true
