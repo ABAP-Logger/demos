@@ -19,7 +19,7 @@
     }
   ],
   "syntax": {
-    "version": "v740",
+    "version": "v702",
     "errorNamespace": "^(Z|Y)",
     "globalConstants": [
       "cntb_btype_button"
