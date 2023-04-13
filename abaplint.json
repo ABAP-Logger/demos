@@ -131,11 +131,11 @@
     "newline_between_methods": false,
     "no_public_attributes": false,
     "object_naming": {
-      "clas": "^ZC(L|X)\\_EXCEL",
-      "intf": "^ZIF\\_EXCEL",
-      "tabl": "^ZEXCEL",
-      "ttyp": "^ZEXCEL",
-      "dtel": "^ZEXCEL"
+      "clas": "^ZC(L|X)\\_LOGGER",
+      "intf": "^ZIF\\_LOGGER",
+      "tabl": "^ZLOGGER",
+      "ttyp": "^ZLOGGER",
+      "dtel": "^ZLOGGER"
     },
     "prefer_returning_to_exporting": false,
     "preferred_compare_operator": false,
