@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_DTEL" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <DD04V>
+    <ROLLNAME>ZLOGGER_DEMO_ITMNO</ROLLNAME>
+    <DDLANGUAGE>E</DDLANGUAGE>
+    <DOMNAME>NUMC06</DOMNAME>
+    <HEADLEN>55</HEADLEN>
+    <SCRLEN1>10</SCRLEN1>
+    <SCRLEN2>20</SCRLEN2>
+    <SCRLEN3>40</SCRLEN3>
+    <DDTEXT>ABAP Logger: item number (demo)</DDTEXT>
+    <REPTEXT>Item number</REPTEXT>
+    <SCRTEXT_S>item no.</SCRTEXT_S>
+    <SCRTEXT_M>Item no.</SCRTEXT_M>
+    <SCRTEXT_L>Item number</SCRTEXT_L>
+    <DTELMASTER>E</DTELMASTER>
+    <DEFFDNAME>ITM_NUMBER</DEFFDNAME>
+    <REFKIND>D</REFKIND>
+   </DD04V>
+   <I18N_LANGS>
+    <LANGU>D</LANGU>
+   </I18N_LANGS>
+   <DD04_TEXTS>
+    <item>
+     <DDLANGUAGE>D</DDLANGUAGE>
+     <DDTEXT>ABAP Logger: Belegunmmer (Demo)</DDTEXT>
+     <REPTEXT>Positionsnummer</REPTEXT>
+     <SCRTEXT_S>Pos.Nr.</SCRTEXT_S>
+     <SCRTEXT_M>Position</SCRTEXT_M>
+     <SCRTEXT_L>Positionsnummer</SCRTEXT_L>
+    </item>
+   </DD04_TEXTS>
+  </asx:values>
+ </asx:abap>
+</abapGit>
