@@ -2,11 +2,13 @@ REPORT zlogger_demo_05.
 
 
 "create display profile
-DATA(my_profile) = zcl_logger_factory=>create_display_profile(
+DATA my_profile TYPE REF TO zif_logger_display_profile.
+my_profile = zcl_logger_factory=>create_display_profile(
                i_single_log  = abap_true )->set_grid( abap_true ).
 
 "Create logger (autosave and 2nd DB connection is default)
-DATA(my_logger) = zcl_logger_factory=>create_log(
+DATA my_logger TYPE REF TO zif_logger.
+my_logger = zcl_logger_factory=>create_log(
                     object    = 'BCT2'
                     subobject = 'ALPHA'
                     desc      = 'ABAP Logger Demo 05'
@@ -22,7 +24,8 @@ my_logger->s( obj_to_log = 'Log saved.' ) ##no_text.
 
 
 "Display messages in popup
-DATA(my_saved_log) = zcl_logger=>open(
+DATA my_saved_log TYPE REF TO zcl_logger.
+my_saved_log = zcl_logger=>open(
     object                   = 'BCT2'
     subobject                = 'ALPHA'
     desc                     = 'ABAP Logger Demo 05' ) ##no_text.

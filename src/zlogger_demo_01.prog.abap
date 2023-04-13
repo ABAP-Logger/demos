@@ -1,7 +1,8 @@
 REPORT zlogger_demo_01.
 
 "Create logger
-DATA(my_logger) = zcl_logger_factory=>create_log( desc = 'ABAP Logger Demo 01' )  ##no_text.
+DATA my_logger TYPE REF TO zif_logger.
+my_logger = zcl_logger_factory=>create_log( desc = 'ABAP Logger Demo 01' )  ##no_text.
 
 "put some messages
 my_logger->i( 'program start' ) ##no_text.

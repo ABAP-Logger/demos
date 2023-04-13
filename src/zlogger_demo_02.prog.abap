@@ -1,7 +1,8 @@
 REPORT zlogger_demo_02.
 
 "create settings
-DATA(my_settings) = zcl_logger_factory=>create_settings( ).
+DATA my_settings TYPE REF TO zif_logger_settings.
+my_settings  = zcl_logger_factory=>create_settings( ).
 my_settings->set_expiry_date( sy-datum )->set_autosave( abap_false ).
 
 "Create logger
