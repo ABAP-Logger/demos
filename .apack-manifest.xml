@@ -11,7 +11,7 @@
     <item>
      <GROUP_ID>github.com/ABAP-logger</GROUP_ID>
      <ARTIFACT_ID>ABAP-Logger</ARTIFACT_ID>
-     <GIT_URL>https://github.com/ABAP-logger</GIT_URL>
+     <GIT_URL>https://github.com/ABAP-logger/ABAP-logger</GIT_URL>
     </item>
    </DEPENDENCIES>
   </DATA>
