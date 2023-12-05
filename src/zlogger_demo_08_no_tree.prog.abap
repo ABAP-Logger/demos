@@ -18,6 +18,7 @@ FORM logs_create.
     ls_context    TYPE bal_s_ex01,
     ls_importance TYPE balprobcl,
     ls_msg        TYPE bal_s_msg,
+    lx_error      TYPE REF TO zcx_logger_display_profile,
     lv_msgno      TYPE symsgno,
     lv_msg        TYPE string.
 
@@ -26,8 +27,7 @@ FORM logs_create.
              desc      = 'Application Log Demo'
              settings  = zcl_logger_factory=>create_settings(
                            )->set_autosave( abap_false
-                           )->set_must_be_kept_until_expiry( abap_true
-                           ) ).
+                           )->set_must_be_kept_until_expiry( abap_true ) ).
 
   "create display profile
   my_profile = zcl_logger_factory=>create_display_profile( i_no_tree = 'X' )->set_grid( abap_true ).
@@ -39,8 +39,8 @@ FORM logs_create.
       my_profile->set_value( i_fld = 'EXP_LEVEL'
                              i_val = 0 ).
 
-    CATCH zcx_logger_display_profile INTO DATA(lv_error).
-      logger->e( lv_error->get_text( ) ).
+    CATCH zcx_logger_display_profile INTO lx_error.
+      logger->e( lx_error->get_text( ) ).
   ENDTRY.
 
   lv_msgno = '301'.

@@ -84,6 +84,7 @@ ENDFORM.
 FORM display_profile_self.
 
   DATA:
+    lx_error     TYPE REF TO zcx_logger_display_profile,
     lt_lev1_fcat TYPE bal_t_fcat,
     lt_lev2_fcat TYPE bal_t_fcat,
     lt_lev3_fcat TYPE bal_t_fcat,
@@ -142,7 +143,8 @@ FORM display_profile_self.
                              i_val = lt_lev2_fcat ).
       my_profile->set_value( i_fld = 'LEV3_FCAT'
                              i_val = lt_lev3_fcat ).
-    CATCH zcx_logger_display_profile INTO DATA(lx_error).
+
+    CATCH zcx_logger_display_profile INTO lx_error.
       logger->e( lx_error->get_text( ) ).
   ENDTRY.
 
