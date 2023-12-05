@@ -18,7 +18,7 @@ START-OF-SELECTION.
     log_collection->display_logs_using_profile( my_profile->get( ) ).
   ENDIF.
 
-FORM logs_create USING desc.
+FORM logs_create USING desc TYPE string.
 
   DATA:
     ls_context    TYPE bal_s_ex01,
