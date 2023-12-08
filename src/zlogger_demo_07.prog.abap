@@ -37,7 +37,7 @@ AT SELECTION-SCREEN OUTPUT.
 
 AT SELECTION-SCREEN.
 
-  "put some messages
+  "add some messages
   my_logger->w( obj_to_log = 'demonstration warning' ).
   my_logger->e( obj_to_log = 'demonstration error' ).
   my_logger->s( obj_to_log = 'demonstration success' ).
