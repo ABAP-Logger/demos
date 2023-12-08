@@ -21,11 +21,11 @@ CLASS ZCL_LOGGER_APACK_MANIFEST IMPLEMENTATION.
 
     DATA dep TYPE if_apack_manifest=>ty_dependency.
 
-    dep-group_id    = 'github.com/ABAP-logger'.
+    dep-group_id    = 'github.com/ABAP-Logger'.
     dep-artifact_id = 'ABAP-Logger'.
-    dep-git_url     = 'https://github.com/ABAP-logger'.
+    dep-git_url     = 'https://github.com/ABAP-Logger/ABAP-Logger'.
 
-    if_apack_manifest~descriptor-group_id        = 'github.com/ABAP-logger'.
+    if_apack_manifest~descriptor-group_id        = 'github.com/ABAP-Logger'.
     if_apack_manifest~descriptor-artifact_id     = 'ABAP-Logger-demos'.
     if_apack_manifest~descriptor-version         = '0.1'.
     if_apack_manifest~descriptor-git_url         = 'https://github.com/ABAP-Logger/demos'.

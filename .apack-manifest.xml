@@ -2,16 +2,16 @@
 <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
  <asx:values>
   <DATA>
-   <GROUP_ID>github.com/ABAP-logger</GROUP_ID>
+   <GROUP_ID>github.com/ABAP-Logger</GROUP_ID>
    <ARTIFACT_ID>ABAP-Logger-demos</ARTIFACT_ID>
    <VERSION>0.1</VERSION>
    <REPOSITORY_TYPE>abapGit</REPOSITORY_TYPE>
    <GIT_URL>https://github.com/ABAP-Logger/demos</GIT_URL>
    <DEPENDENCIES>
     <item>
-     <GROUP_ID>github.com/ABAP-logger</GROUP_ID>
+     <GROUP_ID>github.com/ABAP-Logger</GROUP_ID>
      <ARTIFACT_ID>ABAP-Logger</ARTIFACT_ID>
-     <GIT_URL>https://github.com/ABAP-logger</GIT_URL>
+     <GIT_URL>https://github.com/ABAP-Logger/ABAP-Logger</GIT_URL>
     </item>
    </DEPENDENCIES>
   </DATA>
