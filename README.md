@@ -13,3 +13,4 @@ Demo ID | Program                     | Description
 05      | `ZLOGGER_DEMO_05`           | Show impact of using 2nd database connection
 06      | `ZLOGGER_DEMO_06`           | Using callback feature
 07      | `ZLOGGER_DEMO_07`           | Display log in container
+08      | `ZLOGGER_DEMO_08`           | Display various log styles
